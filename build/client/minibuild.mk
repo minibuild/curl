@@ -1,5 +1,6 @@
 module_type = 'executable'
-module_name = 'curlsh'
+module_name = 'curl_client'
+exe_name = 'curl'
 
 src_search_dir_list = ['../../vendor/src']
 
