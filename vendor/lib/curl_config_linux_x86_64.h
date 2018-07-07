@@ -1,3 +1,9 @@
+/* lib/curl_config.h.  Generated from curl_config.h.in by configure.  */
+/* lib/curl_config.h.in.  Generated from configure.ac by autoheader.  */
+
+/* to enable curl debug memory tracking */
+/* #undef CURLDEBUG */
+
 /* Location of default ca bundle */
 /* #undef CURL_CA_BUNDLE */
 
@@ -73,8 +79,14 @@
 /* Definition to make a library symbol externally visible. */
 #define CURL_EXTERN_SYMBOL __attribute__ ((__visibility__ ("default")))
 
+/* IP address type in sockaddr */
+#define CURL_SA_FAMILY_T sa_family_t
+
 /* built with multiple SSL backends */
 /* #undef CURL_WITH_MULTI_SSL */
+
+/* enable debug build options */
+/* #undef DEBUGBUILD */
 
 /* your Entropy Gathering Daemon socket pathname */
 /* #undef EGD_SOCKET */
@@ -170,7 +182,7 @@
 #define HAVE_DLFCN_H 1
 
 /* Define to 1 if you have the `ENGINE_cleanup' function. */
-/* #undef HAVE_ENGINE_CLEANUP */
+#define HAVE_ENGINE_CLEANUP 1
 
 /* Define to 1 if you have the `ENGINE_load_builtin_engines' function. */
 #define HAVE_ENGINE_LOAD_BUILTIN_ENGINES 1
@@ -956,7 +968,7 @@
 /* #undef USE_LIBSSH2 */
 
 /* If you want to build curl with the built-in manual */
-/* #undef USE_MANUAL */
+#define USE_MANUAL 1
 
 /* if mbedTLS is enabled */
 /* #undef USE_MBEDTLS */

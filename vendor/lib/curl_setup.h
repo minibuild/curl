@@ -57,7 +57,41 @@
 
 #else /* HAVE_CONFIG_H */
 
-#error "Config not given."
+#ifdef _WIN32_WCE
+#  include "config-win32ce.h"
+#else
+#  ifdef WIN32
+#    include "config-win32.h"
+#  endif
+#endif
+
+#if defined(macintosh) && defined(__MRC__)
+#  include "config-mac.h"
+#endif
+
+#ifdef __riscos__
+#  include "config-riscos.h"
+#endif
+
+#ifdef __AMIGA__
+#  include "config-amigaos.h"
+#endif
+
+#ifdef __SYMBIAN32__
+#  include "config-symbian.h"
+#endif
+
+#ifdef __OS400__
+#  include "config-os400.h"
+#endif
+
+#ifdef TPF
+#  include "config-tpf.h"
+#endif
+
+#ifdef __VXWORKS__
+#  include "config-vxworks.h"
+#endif
 
 #endif /* HAVE_CONFIG_H */
 
@@ -413,6 +447,15 @@
 #  endif
 #endif
 
+#ifndef SIZE_T_MAX
+/* some limits.h headers have this defined, some don't */
+#if defined(SIZEOF_SIZE_T) && (SIZEOF_SIZE_T > 4)
+#define SIZE_T_MAX 18446744073709551615U
+#else
+#define SIZE_T_MAX 4294967295U
+#endif
+#endif
+
 /*
  * Arg 2 type for gethostname in case it hasn't been defined in config file.
  */
@@ -751,5 +794,10 @@ endings either CRLF or LF so 't' is appropriate.
 #    define CURL_WINDOWS_APP
 #  endif
 # endif
+
+/* for systems that don't detect this in configure, use a sensible default */
+#ifndef CURL_SA_FAMILY_T
+#define CURL_SA_FAMILY_T unsigned short
+#endif
 
 #endif /* HEADER_CURL_SETUP_H */

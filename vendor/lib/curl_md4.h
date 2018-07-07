@@ -1,5 +1,5 @@
-#ifndef HEADER_CURL_GSKIT_H
-#define HEADER_CURL_GSKIT_H
+#ifndef HEADER_CURL_MD4_H
+#define HEADER_CURL_MD4_H
 /***************************************************************************
  *                                  _   _ ____  _
  *  Project                     ___| | | |  _ \| |
@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2016, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2014, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -21,18 +21,15 @@
  * KIND, either express or implied.
  *
  ***************************************************************************/
+
 #include "curl_setup.h"
 
-/*
- * This header should only be needed to get included by vtls.c and gskit.c
- */
+#if defined(USE_NSS) || defined(USE_OS400CRYPTO) || \
+    (defined(USE_MBEDTLS) && !defined(MBEDTLS_MD4_C))
 
-#include "urldata.h"
+void Curl_md4it(unsigned char *output, const unsigned char *input, size_t len);
 
-#ifdef USE_GSKIT
+#endif /* defined(USE_NSS) || defined(USE_OS400CRYPTO) ||
+    (defined(USE_MBEDTLS) && !defined(MBEDTLS_MD4_C)) */
 
-extern const struct Curl_ssl Curl_ssl_gskit;
-
-#endif /* USE_GSKIT */
-
-#endif /* HEADER_CURL_GSKIT_H */
+#endif /* HEADER_CURL_MD4_H */
