@@ -19,10 +19,11 @@ lib_list = [
   '${@project_root}/zlib',
 ]
 
+winrc_file = '../../vendor/src/curl.rc'
+
 prebuilt_lib_list_linux = ['dl', 'pthread', 'rt']
 prebuilt_lib_list_windows = ['crypt32','ws2_32', 'advapi32', 'user32']
-
-win_console = 1
+macosx_framework_list = ['CoreFoundation', 'Security']
 
 build_list = [
   'slist_wc.c',
